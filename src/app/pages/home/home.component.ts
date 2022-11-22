@@ -1,14 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
 import { HomeService } from 'src/app/services/home/home.service';
 import { HttpStatusCode } from '@angular/common/http';
-import { NgxSpinnerService } from 'ngx-spinner';
-@Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
-})
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,16 +8,12 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private homeService: HomeService,
-              private spinner: NgxSpinnerService) { }
+  constructor(private homeService: HomeService) { }
 
   message: string | undefined;
 
   ngOnInit() {
-
-    this.spinner.show();
-
-    this.fetchMessage()
+    this.fetchMessage();
 
   }
 
@@ -35,10 +23,9 @@ export class HomeComponent implements OnInit {
       if (res.status == HttpStatusCode.Ok) {
         this.message = res.body.message;
       }
-      this.spinner.hide();
-
+    
     }, (err: any) => {
-      this.spinner.hide();
+     
       console.log(err);
     });
 

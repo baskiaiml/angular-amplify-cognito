@@ -29,6 +29,7 @@ export class JwtInterceptor implements HttpInterceptor {
                             Authorization: `Bearer ${jwt}`
                         }
                     });
+                    console.log("JWT token",jwt);
                     console.log("Cloned",with_auth_request);
                     return next.handle(with_auth_request);
                 }),

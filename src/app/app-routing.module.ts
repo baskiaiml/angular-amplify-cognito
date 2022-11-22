@@ -6,9 +6,9 @@ import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent },
-  {path: 'dashboard', component: HomeComponent, canActivate: [AuthGuard] },
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: '/dashboard' }
+  { path: '**', redirectTo: '/login' }
 ];
 
 @NgModule({

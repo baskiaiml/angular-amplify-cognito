@@ -14,14 +14,6 @@ export class RestApiService {
     this.token ="";
   }
 
-  public _addStandardHeaders(header:HttpHeaders){
-    header = header.append('Content-Type','application/json');
-    header = header.append('Accept','application/json');
-    header = header.append('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT');
-    
-    return header;
-  }
-
   get(endpoint: string, params?: any, reqOpts?: any) {
     if (!reqOpts) {
       reqOpts = {
@@ -32,15 +24,24 @@ export class RestApiService {
     if (params) {
       reqOpts.params = new HttpParams();
       for (let k in params) {
+        console.log("Get Request Params",params[k]);
         reqOpts.params = reqOpts.params.set(k, params[k]);
       }
     }
 
-    return this.http.get(this.backend_url + '/' + endpoint, reqOpts);
+    return this.http.get(this.backend_url + '/' + endpoint, {headers:{'Content-Type':'text/plain','Accept':'text/plain',
+    'Access-Control-Allow-Methods':'GET, POST, DELETE, PUT, OPTIONS',
+     'Access-Control-Allow-Credentials':'true',
+    // 'Access-Control-Allow-Headers':'Content-Type,Authorization',
+     'Access-Control-Allow-Origin':'*'}});
   }
 
   post(endpoint: string, body: any, reqOpts?: any) {
-    return this.http.post<any>(this.backend_url + '/' + endpoint, body, reqOpts);
+    return this.http.post<any>(this.backend_url + '/' + endpoint, body, /*{headers:{'Content-Type':'text/plain','Accept':'text/plain',
+    'Access-Control-Allow-Methods':'GET, POST, DELETE, PUT, OPTIONS',
+     'Access-Control-Allow-Credentials':'true',
+   //  'Access-Control-Allow-Headers':'Content-Type,Authorization',
+     'Access-Control-Allow-Origin':'*'}}*/);
   }
 
   put(endpoint: string, body: any, reqOpts?: any) {

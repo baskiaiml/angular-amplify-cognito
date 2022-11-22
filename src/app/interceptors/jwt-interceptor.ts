@@ -23,14 +23,21 @@ export class JwtInterceptor implements HttpInterceptor {
             .pipe(
                 switchMap((auth: any) => { // switchMap() is used instead of map().
 
-                    let jwt = auth.accessToken.jwtToken;
+                    let jwt = auth.idToken.jwtToken;
                     let with_auth_request = request.clone({
                         setHeaders: {
-                            Authorization: `Bearer ${jwt}`
+                          /* 'Content-Type':'text/plain',
+                           'Accept':'text/plain',
+                           'Access-Control-Allow-Credentials': 'true',
+                           'Access-Control-Allow-Methods':'GET,POST,DELETE,PUT,OPTIONS',*/
+                           'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                           'Access-Control-Allow-Origin':'*',
+                            Authorization: `${jwt}`
                         }
                     });
-                    console.log("JWT token",jwt);
-                    console.log("Cloned",with_auth_request);
+                    
+                    console.log("headers",with_auth_request);
+                    console.log("Id token",jwt);
                     return next.handle(with_auth_request);
                 }),
                 catchError((err) => {

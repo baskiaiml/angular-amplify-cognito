@@ -18,7 +18,18 @@ export class HomeComponent implements OnInit {
   }
 
   fetchMessage(){
-    this.homeService.fetch().subscribe((res: any) => {
+    this.homeService.fetch().subscribe({
+      next: (res:any) =>{
+        if (res.status == HttpStatusCode.Ok) {
+          this.message = res.body.message;
+        }
+      },
+      error: (e) => console.error(e),
+      complete: () => console.info('complete') 
+  });
+
+  }
+  /*(res: any) => {
 
       if (res.status == HttpStatusCode.Ok) {
         this.message = res.body.message;
@@ -27,8 +38,6 @@ export class HomeComponent implements OnInit {
     }, (err: any) => {
      
       console.log(err);
-    });
-
-  }
+    }*/
 
 }

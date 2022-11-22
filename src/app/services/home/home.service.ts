@@ -1,4 +1,6 @@
+import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { RestApiService } from '../api/rest-api.service';
 
 @Injectable({
@@ -9,7 +11,7 @@ export class HomeService {
   constructor(private restApiService: RestApiService) { }
 
   fetch(){
-    return this.restApiService.get('api/admin/message', null, {observe: 'response'});
+    return this.restApiService.get('example', null, {observe: 'response'});
   }
 
 }

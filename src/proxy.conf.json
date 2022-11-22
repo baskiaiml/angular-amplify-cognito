@@ -1,0 +1,7 @@
+{
+    "/example*": {
+        "target": "http://locahost:4200/",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

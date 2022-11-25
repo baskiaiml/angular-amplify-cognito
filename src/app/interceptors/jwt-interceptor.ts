@@ -28,8 +28,8 @@ export class JwtInterceptor implements HttpInterceptor {
                         setHeaders: {
                           /* 'Content-Type':'text/plain',
                            'Accept':'text/plain',
-                           'Access-Control-Allow-Credentials': 'true',
-                           'Access-Control-Allow-Methods':'GET,POST,DELETE,PUT,OPTIONS',*/
+                           'Access-Control-Allow-Credentials': 'true',*/
+                           'Access-Control-Allow-Methods':'GET,POST,DELETE,PUT,OPTIONS',
                            'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
                            'Access-Control-Allow-Origin':'*',
                             Authorization: `${jwt}`
